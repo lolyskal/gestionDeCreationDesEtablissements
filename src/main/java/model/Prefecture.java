@@ -1,22 +1,28 @@
 package model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true )
 @Entity
-@Table(name="PenaliteObtenu")
-public class penaliteObtenu extends AbstractEntity {
+@Table(name="prefecture")
+public class Prefecture extends AbstractEntity {
 
 
 
@@ -24,22 +30,19 @@ public class penaliteObtenu extends AbstractEntity {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@Id
+@Column(name="libelle")
+	private String libelle ;
 
-@Column(name="type_Penalite")
-	private String type_Penalite;
-
-@Column(name="duree")
-	private int duree;
-
-@Column(name="montants")
-	private int montants;
+@Column(name="chef_Lieu")
+	private String chef_Lieu;
 
 @ManyToOne
-@JoinColumn(name="IdPenalite")
-	private penalite Penalite ;
+@JoinColumn(name="idRegionAdministrative")
+	private RegionAdministrative regionAdministrative;
 
-@ManyToOne
-@JoinColumn(name="IdEtablissement")
-	private etablissement Etablissement ;
+@OneToMany(mappedBy ="prefecture")
+   	private List<Commune> commune;
+   	
 
 }

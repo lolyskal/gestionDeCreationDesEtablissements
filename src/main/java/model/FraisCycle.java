@@ -4,42 +4,40 @@ import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true )
 @Entity
-@Table(name="Prefecture")
-public class prefecture extends AbstractEntity {
-
+@Table(name="fraisCycle")
+public class FraisCycle extends AbstractEntity{
 
 
 /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@Id
+@Column(name="code")
+	private int code ;
 
-@Column(name="libelle")
+@Column(name="libelle")	
 	private String libelle ;
 
-@Column(name="chef_Lieu")
-	private String chef_Lieu;
+@Column(name="prix_Cycle_Enseignemant")	
+	private String prix_Cycle_Enseignemant;
 
-@ManyToOne
-@JoinColumn(name="idRegionAdministrative")
-	private regionAdministrative RegionAdministrative;
+@OneToMany(mappedBy="fraisCyle")
 
-@OneToMany(mappedBy ="Prefecture")
-   	private List<commune> Commune;
-   	
-
+	private List<AgrementObtenu> agrementObtenu; 
 }

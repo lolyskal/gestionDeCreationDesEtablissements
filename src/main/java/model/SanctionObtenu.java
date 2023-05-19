@@ -1,47 +1,44 @@
 package model;
 
-
-
-
-
-import java.util.List;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true )
 @Entity
-@Table(name="Commune")
-public class commune extends AbstractEntity {
+@Table(name="sanctionObtenu")
+public class SanctionObtenu extends AbstractEntity {
 
 
 /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@Id
+@Column(name="date")
+	private int date ;
 
-@Column(name="no_Commune")
-	private int no_Commune ;
-
-@Column	(name="libelle")
-	private String libelle ;
+@Column(name="motif")
+	private String motif;
 
 @ManyToOne
-@JoinColumn(name="idPrefecture")
-	private prefecture Prefecture ;
+@JoinColumn(name="IdEtablissement")
+	private Etablissement etablissement;
 
-@OneToMany(mappedBy="Commune")
-	private List<canton> Canton;
+@ManyToOne
+@JoinColumn(name="idSanction")
+	private Sanction sanction;
 
 }

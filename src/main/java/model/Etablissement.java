@@ -4,30 +4,33 @@ import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true )
 @Entity
-@Table(name="Etablisement")
-public class etablissement extends AbstractEntity {
+@Table(name="etablissement")
+public class Etablissement extends AbstractEntity {
 	
 
 /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	@Id
 @Column(name="nom_Etablissement")
 	private String nom_Etablissement ;
 	
@@ -97,26 +100,26 @@ public class etablissement extends AbstractEntity {
     
 @ManyToOne 
 @JoinColumn(name="idOrdreEnseignement")
-    private ordreEnseignement OrdreEnseignement;
+    private OrdreEnseignement ordreEnseignement;
     
-@OneToMany(mappedBy="Etablissement")
-    private List<cycleEnseignement> CycleEnseignement;
+@OneToMany(mappedBy="etablissement")
+    private List<CycleEnseignement> cycleEnseignement;
     
 @ManyToOne 
 @JoinColumn(name="idCanton")
-	private canton Canton;
+	private Canton Canton;
 
 @ManyToOne 
 @JoinColumn(name="idInspection")
-	private inspection Inspection ;
+	private Inspection inspection ;
 
-@OneToMany(mappedBy="Etablissement")
-	private List<penaliteObtenu> PenaliteObtenu;
+@OneToMany(mappedBy="etablissement")
+	private List<PenaliteObtenu> penaliteObtenu;
     
-@OneToMany(mappedBy="Etablissement")	
-	private List<sanctionObtenu> SanctionObtenu;
+@OneToMany(mappedBy="etablissement")	
+	private List<SanctionObtenu> sanctionObtenu;
 	
-@OneToMany(mappedBy="Etablissement")	
-	private List<agrementObtenu> AgrementObtenu;	
+@OneToMany(mappedBy="etablissement")	
+	private List<AgrementObtenu> agrementObtenu;	
 }
 

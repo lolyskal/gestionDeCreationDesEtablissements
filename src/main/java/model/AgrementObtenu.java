@@ -2,31 +2,34 @@ package model;
 
 import java.time.Instant;
 
-import org.apache.logging.log4j.util.Strings;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true )
 @Entity
-@Table(name="AgrementObtenu")
-public class agrementObtenu extends AbstractEntity {
+@Table(name="agrementObtenu")
+public class AgrementObtenu extends AbstractEntity {
 	
 
 /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+@Id	
 
 @Column(name = "numero" )	
 	private int numero ;
@@ -35,10 +38,10 @@ public class agrementObtenu extends AbstractEntity {
 	private Instant date ;
 	
 @Column(name = "nom_Ministre")
-	private Strings nom_Ministre ;
+	private String nom_Ministre ;
 
 @Column(name = "prenom_Ministre")
-	private Strings prenom_Ministre ;
+	private String prenom_Ministre ;
 
 @Column(name = "num_Tel_Ministre")
 	private int num_Tel_Ministre ;
@@ -48,14 +51,14 @@ public class agrementObtenu extends AbstractEntity {
 
 @ManyToOne 
 @JoinColumn(name="IdFraisCycle")
-	private fraisCycle FraisCycle ;
+	private FraisCycle fraisCyle ;
 
 @ManyToOne 
 @JoinColumn(name="IdAgrement")
-	private  agrement Agrement ;
+	private  Agrement agrement ;
 
 @ManyToOne 
 @JoinColumn(name="IdEtablissement")
-	private etablissement Etablissement ;
+	private Etablissement etablissement ;
 
 }
